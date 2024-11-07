@@ -1,0 +1,10 @@
+data/darkQuest_1e18_projection_Umu2_vs_mNGeV.txt filter=lfs diff=lfs merge=lfs -text
+data/darkQuest_1e20_projection_Umu2_vs_mNGeV.txt filter=lfs diff=lfs merge=lfs -text
+data/hnl_br_nu_hadronic_by_mass-MeV.txt filter=lfs diff=lfs merge=lfs -text
+data/r_ratio_by_sqrtS-GeV.txt filter=lfs diff=lfs merge=lfs -text
+data/darkQuest_1e18_projection_Utau2_vs_mNGeV.txt filter=lfs diff=lfs merge=lfs -text
+data/darkQuest_1e20_projection_Utau2_vs_mNGeV.txt filter=lfs diff=lfs merge=lfs -text
+data/dune_target_eta0_4vectors_1e5POT.txt filter=lfs diff=lfs merge=lfs -text
+data/dune_target_pi0_4vectors_1e5POT.txt filter=lfs diff=lfs merge=lfs -text
+data/hnl_br_e_hadronic_by_mass-MeV.txt filter=lfs diff=lfs merge=lfs -text
+data/hnl_br_mu_hadronic_by_mass-MeV.txt filter=lfs diff=lfs merge=lfs -text
