@@ -1,6 +1,10 @@
 scans/*
 plots/*
+plots/
+scans/
 data/*.csv
+data/darkQuest*
+data/hnl_br*
 data/limits_electron_mixingSq_vs_hnlmass/*
-data/limits_electron_mixingSq_vs_hnlmass/*
+data/limits_muon_mixingSq_vs_hnlmass/*
 data/limits_tau_mixingSq_vs_hnlmass/*
