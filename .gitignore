@@ -1,0 +1,6 @@
+scans/*
+plots/*
+data/*.csv
+data/limits_electron_mixingSq_vs_hnlmass/*
+data/limits_electron_mixingSq_vs_hnlmass/*
+data/limits_tau_mixingSq_vs_hnlmass/*
