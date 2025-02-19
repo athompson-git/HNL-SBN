@@ -166,10 +166,15 @@ def plot_muon_limits(mass_ratio=2.1):
         c1 = get_Usq_upper_lower_limits("scans/hnl_DUNE_scan_mass-ratio-2_ebrem_umu_highstats.txt", color='royalblue')
         c2 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-2_pbrem_umu.txt", color='indianred')
         c3 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-2_meson_umu.txt", color='g')
+
+        #c4 = get_Usq_contour_from_file("scans/recast_scans/hnl_BEBC_scan_mass-ratio-2_pbrem_umu.txt", color='k')
+
     elif mass_ratio == 5:
-        c3 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-5_pbrem_umu.txt", color='indianred')
-        c1 = get_Usq_upper_lower_limits("scans/hnl_DUNE_scan_mass-ratio-5_ebrem_umu.txt", color='royalblue')
+        c1 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-5_pbrem_umu.txt", color='indianred')
+        c2 = get_Usq_upper_lower_limits("scans/hnl_DUNE_scan_mass-ratio-5_ebrem_umu.txt", color='royalblue')
         c3 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-5_meson_umu.txt", color='g')
+
+        #c4 = get_Usq_contour_from_file("scans/recast_scans/hnl_BEBC_scan_mass-ratio-5_pbrem_umu.txt", color='k')
 
 
     # plot seesaw line
@@ -178,13 +183,13 @@ def plot_muon_limits(mass_ratio=2.1):
 
     # future dune
     plt.plot(1e3*power(10,dune_future[:,0]), power(10, dune_future[:,1]), ls='dotted', color='teal', linewidth=1.0)
-    plt.text(43.0, 1.2e-8, "DUNE-ND\n(Mixing Only)", rotation=-35.0, color='teal')
+    plt.text(63.0, 2e-8, "DUNE-ND\n(Mixing Only)", rotation=-32.0, color='teal')
 
-    plt.text(30.0, 1e-9, "Seesaw", rotation=-14.0, fontsize=12)
+    plt.text(100.0, 5e-10, "Seesaw", rotation=-12.0, fontsize=12)
     plt.text(1500.0, 5e-4, "Laboratory Limits\n(Mixing-only)", fontsize=12)
 
-    line_pbrem = Line2D([0], [0], label=r'$p N \to p N Z^\prime$', color='indianred')
-    line_ebrem = Line2D([0], [0], label=r'$e^\pm N \to e^\pm N Z^\prime$, $e^+ e^- \to Z^\prime$', color='royalblue')
+    line_pbrem = Line2D([0], [0], label=r'$p p \to X Z^\prime$', color='indianred')
+    line_ebrem = Line2D([0], [0], label=r'$e^\pm A \to e^\pm A Z^\prime$, $e^+ e^- \to Z^\prime$', color='royalblue')
     line_pion = Line2D([0], [0], label=r'$\pi^0 (\eta^0) \to \gamma Z^\prime$', color='g')
     handles, labels = plt.gca().get_legend_handles_labels()
     handles.extend([line_ebrem, line_pbrem, line_pion])
@@ -200,7 +205,7 @@ def plot_muon_limits(mass_ratio=2.1):
     plt.xlabel(r"$m_N$ [MeV]", fontsize=14)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.xlim((10.0, 1e4))
+    plt.xlim((50.0, 1e4))
     plt.ylim((1e-12, 1.0e-2))
     plt.tight_layout()
     plt.show()
@@ -228,6 +233,8 @@ def plot_muon_limits_sbn(mass_ratio=2.1):
                                        color='indianred', cls=[3.0*3.0], ls=['dashed'])
         c5 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-2_pbrem_umu.txt", color='g', cls=[3.0])
         c6 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-2_pbrem_umu.txt", color='g', cls=[3.0e-2], ls=['dashed'])
+
+
     elif mass_ratio == 5:
         c1 = get_Usq_contour_from_file("scans/hnl_SBND_scan_mass-ratio-5_pbrem_umu.txt", color='indianred', cls=[3.0])
         c3 = get_Usq_contour_from_file("scans/hnl_MUB_scan_mass-ratio-5_pbrem_umu.txt", color='cadetblue', cls=[3.0])
@@ -236,6 +243,7 @@ def plot_muon_limits_sbn(mass_ratio=2.1):
                                        color='indianred', cls=[3.0*3.0], ls=['dashed'])
         c5 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-5_pbrem_umu.txt", color='g', cls=[3.0])
         c6 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-5_pbrem_umu.txt", color='g', cls=[3.0e-2], ls=['dashed'])
+
     
     # plot DQ projections
     plt.plot(1e3*dq_18POT_Umu[:,0], dq_18POT_Umu[:,1], linewidth=1.0, color='mediumpurple', ls='dashdot')
@@ -249,10 +257,10 @@ def plot_muon_limits_sbn(mass_ratio=2.1):
     plt.text(1750.0, 5e-4, "Laboratory Limits\n(Mixing-only)", fontsize=12)
 
     # text for microboone
-    plt.text(50, 1.0e-7, "MicroBooNE\n(Mixing Only)", rotation=-45.0, color='teal')
+    plt.text(50, 1.0e-7, "MicroBooNE\n(Mixing Only)", rotation=-37.0, color='teal')
 
     # text for DQ
-    plt.text(600.0, 3e-7, "DQ $10^{18}$\n(Mixing Only)", rotation=-25.0, color="mediumpurple")
+    plt.text(420.0, 5e-7, "DQ $10^{18}$\n(Mixing Only)", rotation=-22.0, color="mediumpurple")
     plt.text(2000.0, 7e-9, "DQ $10^{20}$\n(Mixing Only)", rotation=90.0, color="mediumpurple")
 
     line_sbnd = Line2D([0], [0], label=r'SBND', color='indianred')
@@ -263,7 +271,7 @@ def plot_muon_limits_sbn(mass_ratio=2.1):
     line_dq_20 = Line2D([0], [0], label=r'DarkQuest ($10^{20}$ POT)', color='g', ls='dashed')
     handles, labels = plt.gca().get_legend_handles_labels()
     handles.extend([line_sbnd, line_mub, line_icarus, line_sbnd_dump, line_dq, line_dq_20])
-    plt.legend(handles=handles, loc="lower left", framealpha=1, fontsize=10)
+    #plt.legend(handles=handles, loc="lower left", framealpha=1, fontsize=10)
 
     plt.yscale('log')
     plt.xscale('log')
@@ -275,7 +283,7 @@ def plot_muon_limits_sbn(mass_ratio=2.1):
     plt.xlabel(r"$m_N$ [MeV]", fontsize=14)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.xlim((10.0, 1e4))
+    plt.xlim((50.0, 1e4))
     plt.ylim((1e-12, 1.0e-2))
     plt.tight_layout()
     plt.show()
@@ -296,20 +304,30 @@ def plot_tau_limits(mass_ratio=2.1):
 
 
     if mass_ratio == 2.1:
+        c4 = get_Usq_contour_from_file("scans/recast_scans/hnl_BEBC_scan_mass-ratio-2_pbrem_utau.txt", color='gray', cls=[3.5])
+        
+        plt.text(370.0, 8e-5, r"BEBC\\($pp \to X Z^\prime$)", rotation=0.0, color='gray')
+
         c1 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-2_pbrem_utau.txt", color='indianred')
         c2 = get_Usq_upper_lower_limits("scans/hnl_DUNE_scan_mass-ratio-2_ebrem_utau.txt", color='royalblue')
         c3 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-2_meson_utau.txt", color='g')
+
     elif mass_ratio == 5:
         c1 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-5_pbrem_utau.txt", color='indianred')
         c2 = get_Usq_upper_lower_limits("scans/hnl_DUNE_scan_mass-ratio-5_ebrem_utau.txt", color='royalblue')
         c3 = get_Usq_contour_from_file("scans/hnl_DUNE_scan_mass-ratio-5_meson_utau.txt", color='g')
 
+        #c4 = get_Usq_contour_from_file("scans/recast_scans/hnl_BEBC_scan_mass-ratio-5_pbrem_utau.txt", color='k')
+
+
+    # BEBC Label
+    #plt.text(444.0, 4.4e-7, "BEBC Recast with $Z^\prime$")
 
     # plot seesaw line
     masses = np.logspace(0, 4, 100)
     plt.fill_between(masses, y1=seesaw_lower(masses), y2=seesaw_upper(masses), color='gold', alpha=0.3)
 
-    plt.text(30.0, 1e-9, "Seesaw", rotation=-14.0, fontsize=12)
+    plt.text(100.0, 4e-10, "Seesaw", rotation=-12.0, fontsize=12)
     plt.text(1500.0, 5e-4, "Laboratory Limits\n(Mixing-only)", fontsize=12)
 
     line_pbrem = Line2D([0], [0], label=r'$p N \to p N Z^\prime$', color='indianred')
@@ -330,7 +348,7 @@ def plot_tau_limits(mass_ratio=2.1):
     plt.xlabel(r"$m_N$ [MeV]", fontsize=14)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.xlim((10.0, 1e4))
+    plt.xlim((50.0, 1e4))
     plt.ylim((1e-12, 1.0e-2))
     plt.tight_layout()
     plt.show()
@@ -353,6 +371,11 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
                                        color='indianred', cls=[3.0*3.0], ls=['dashed'])
         c5 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-2_pbrem_utau.txt", color='g', cls=[3.0])
         c6 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-2_pbrem_utau.txt", color='g', cls=[3.0e-2], ls=['dashed'])
+
+        c7 = get_Usq_contour_from_file("scans/recast_scans/hnl_BEBC_scan_mass-ratio-2_pbrem_utau.txt", color='gray', cls=[3.5])
+        
+        plt.text(330.0, 7e-7, r"BEBC\\($pp \to X Z^\prime$)", rotation=0.0, color='gray', fontsize=10)
+
     elif mass_ratio == 5:
         c1 = get_Usq_contour_from_file("scans/hnl_SBND_scan_mass-ratio-5_pbrem_utau.txt", color='indianred', cls=[3.0])
         c3 = get_Usq_contour_from_file("scans/hnl_MUB_scan_mass-ratio-5_pbrem_utau.txt", color='cadetblue', cls=[3.0])
@@ -361,6 +384,7 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
                                        color='indianred', cls=[3.0*3.0], ls=['dashed'])
         c5 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-5_pbrem_utau.txt", color='g', cls=[3.0])
         c6 = get_Usq_contour_from_file("scans/hnl_DQ_scan_mass-ratio-5_pbrem_utau.txt", color='g', cls=[3.0e-2], ls=['dashed'])
+
 
     # plot DQ projections
     plt.plot(1e3*dq_18POT_Utau[:,0], dq_18POT_Utau[:,1], linewidth=1.0, color='mediumpurple', ls='dashdot')
@@ -375,11 +399,11 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
 
     # text for DQ
     if mass_ratio == 2.1:
-        plt.text(200.0, 1e-4, "DQ $10^{18}$\n(Mixing Only)", rotation=-32.0, color="mediumpurple")
-        plt.text(200.0, 2.5e-6, "DQ $10^{20}$\n(Mixing Only)", rotation=-32.0, color="mediumpurple")
+        plt.text(200.0, 1e-4, "DQ $10^{18}$\n(Mixing Only)", rotation=-32.0, color="mediumpurple", zorder=8)
+        plt.text(200.0, 4e-6, "DQ $10^{20}$\n(Mixing Only)", rotation=-28.0, color="mediumpurple", zorder=8)
     else:
-        plt.text(474.0, 1e-5, "DQ $10^{18}$\n(Mixing Only)", rotation=-30.0, color="mediumpurple")
-        plt.text(1750.0, 5e-7, "DQ $10^{20}$\n(Mixing Only)", rotation=90.0, color="mediumpurple")
+        plt.text(474.0, 1e-5, "DQ $10^{18}$\n(Mixing Only)", rotation=-30.0, color="mediumpurple", zorder=8)
+        plt.text(1750.0, 5e-7, "DQ $10^{20}$\n(Mixing Only)", rotation=90.0, color="mediumpurple", zorder=8)
 
     line_sbnd = Line2D([0], [0], label=r'SBND', color='indianred')
     line_sbnd_dump = Line2D([0], [0], label=r'SBND Dump Mode', color='indianred', ls='dashed')
@@ -389,7 +413,9 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
     line_dq_20 = Line2D([0], [0], label=r'DarkQuest ($10^{20}$ POT)', color='g', ls='dashed')
     handles, labels = plt.gca().get_legend_handles_labels()
     handles.extend([line_sbnd, line_mub, line_icarus, line_sbnd_dump, line_dq, line_dq_20])
-    plt.legend(handles=handles, loc="lower left", framealpha=1, fontsize=10)
+    
+    if mass_ratio == 5:
+        plt.legend(handles=handles, loc="lower left", framealpha=1, fontsize=10)
 
     plt.yscale('log')
     plt.xscale('log')
@@ -401,7 +427,7 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
     plt.xlabel(r"$m_N$ [MeV]", fontsize=14)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.xlim((10.0, 1e4))
+    plt.xlim((50.0, 1e4))
     plt.ylim((1e-12, 1.0e-2))
     plt.tight_layout()
     plt.show()
@@ -409,9 +435,9 @@ def plot_tau_limits_sbn(mass_ratio=2.1):
 
 def main():
     plot_muon_limits(mass_ratio=2.1)
-    plot_tau_limits(mass_ratio=2.1)
-    plot_muon_limits(mass_ratio=5)
-    plot_tau_limits(mass_ratio=5)
+    #plot_tau_limits(mass_ratio=2.1)
+    #plot_muon_limits(mass_ratio=5)
+    #plot_tau_limits(mass_ratio=5)
     
     #plot_muon_limits_sbn(mass_ratio=2.1)
     #plot_tau_limits_sbn(mass_ratio=2.1)

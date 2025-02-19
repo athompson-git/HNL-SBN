@@ -38,29 +38,7 @@ ICARUS_THRESH = 100.0  # MeV
 # equivalent solid angle: ~ 2.5 mrad
 
 
-# MODEL STUFF
-# Define model list
-model_dict = {
-# Fields: model_name, mediator_type, [mlepton], fixed_mediator_mass
-            "SIB1e": ["scalar_ib1", "V", [M_E], None],
-            "SIB1mu": ["scalar_ib1", "V", [M_MU], None],
-            "PIB1e": ["pseudoscalar_ib1", "V", [M_E], None],
-            "PIB1mu": ["pseudoscalar_ib1", "V", [M_MU], None],
-            "VIB1e_SMediator": ["vector_ib1", "S", [M_E], None],
-            "VIB1mu_SMediator": ["vector_ib1", "S", [M_MU], None],
-            "VIB1e_PMediator": ["vector_ib1", "P", [M_E], None],
-            "VIB1mu_PMediator": ["vector_ib1", "P", [M_MU], None],
-            "VIB1e_Pi0Mediator": ["vector_ib1", "Pi0", [M_E], M_PI0],
-            "VIB1mu_Pi0Mediator": ["vector_ib1", "Pi0", [M_MU], M_PI0],
-            "VIB2_SMediator": ["vector_ib2", "S", [M_E, M_MU], None],
-            "VIB2_PMediator": ["vector_ib2", "P", [M_E, M_MU], None],
-            "VIB2_Pi0Mediator": ["vector_ib2", "Pi0", [M_E, M_MU], M_PI0],
-            "VIB3_SMediator": ["vector_contact", "S", [M_E, M_MU], None],
-            "VIB3_PMediator": ["vector_contact", "P", [M_E, M_MU], None],
-            "VIB3_Pi0Mediator": ["vector_contact", "Pi0", [M_E, M_MU], M_PI0],
-}
-
-
+# fluxes for mesons
 bnb_target_pi0 = np.genfromtxt("../M3DM/data/mb_target_mode/bnb_pi_zero.txt")
 bnb_target_pi0[:,:] *= 1e3
 bnb_target_pi0[:,3] += M_PI0

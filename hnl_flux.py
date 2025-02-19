@@ -345,6 +345,7 @@ class FluxHNLFromProtonBrem(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
         self.support = np.ones(n_samples)
@@ -370,6 +371,7 @@ class FluxHNLFromProtonBrem(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
 
@@ -380,6 +382,7 @@ class FluxHNLFromProtonBrem(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
 
@@ -451,6 +454,7 @@ class FluxHNLFromProtonBrem(AxionFlux):
         tau = boost / gamma_total if gamma_total > 0.0 else np.inf * np.ones_like(boost)
 
         # Calculate time of flight
+        self.hnl_timing = self.det_dist / (v_a * 1e-2 * C_LIGHT)
         if timing_cut is not None:
             tof = self.det_dist / (v_a * 1e-2 * C_LIGHT)
             delta_tof = abs((self.det_dist / (1e-2 * C_LIGHT)) - tof)
@@ -506,6 +510,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
         self.support = np.ones(n_samples)
@@ -537,6 +542,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
     
@@ -556,6 +562,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
         self.hnl_energy = []
         self.hnl_angle = []
         self.hnl_flux = []
+        self.hnl_timing = []
         self.decay_axion_weight = []
         self.scatter_axion_weight = []
 
@@ -623,6 +630,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
     
     def propagate(self, Ualpha, timing_cut=None, is_isotropic=False, verbose=False):
 
+
         gamma_vis = decay_width_visible(self.hnl_mass, Ualpha, [self.alpha])
         gamma_total = total_decay_width_hnl(self.hnl_mass, Ualpha, self.alpha)
 
@@ -640,6 +648,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
         tau = boost / gamma_total if gamma_total > 0.0 else np.inf * np.ones_like(boost)
 
         # Calculate time of flight
+        self.hnl_timing = self.det_dist / (v_a * 1e-2 * C_LIGHT)
         if timing_cut is not None:
             tof = self.det_dist / (v_a * 1e-2 * C_LIGHT)
             delta_tof = abs((self.det_dist / (1e-2 * C_LIGHT)) - tof)
