@@ -12,8 +12,8 @@ eta_flux_per_1e5POT = np.genfromtxt("data/dune_target_eta0_4vectors_1e5POT.txt")
 pi0_theta = np.arccos(pi0_flux_per_1e5POT[:,2] / np.sqrt(pi0_flux_per_1e5POT[:,0]**2 + pi0_flux_per_1e5POT[:,1]**2 + pi0_flux_per_1e5POT[:,2]**2))
 eta_theta = np.arccos(eta_flux_per_1e5POT[:,2] / np.sqrt(eta_flux_per_1e5POT[:,0]**2 + eta_flux_per_1e5POT[:,1]**2 + eta_flux_per_1e5POT[:,2]**2))
 
-pi0_flux_per_1e5POT = pi0_flux_per_1e5POT[pi0_theta < 2e-2]
-eta_flux_per_1e5POT = eta_flux_per_1e5POT[eta_theta < 2e-2]
+pi0_flux_per_1e5POT = 1e3*pi0_flux_per_1e5POT[pi0_theta < 2e-2]
+eta_flux_per_1e5POT = 1e3*eta_flux_per_1e5POT[eta_theta < 2e-2]
 
 # add the mass energy back in
 pi0_p2 = pi0_flux_per_1e5POT[:,0]**2 + pi0_flux_per_1e5POT[:,1]**2 + pi0_flux_per_1e5POT[:,2]**2
@@ -48,8 +48,8 @@ def parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio
     #ualpha_array = np.logspace(-7, 0, 50)
 
     # for ebrem
-    ualpha_array = np.logspace(-3, 0, 40)
-    mN_array = np.logspace(1.0, np.log10(300.0), 40)
+    ualpha_array = np.logspace(-4, 0, 40)
+    mN_array = np.logspace(np.log10(50.0), np.log10(300.0), 40)
 
     file = open(out_file, "w")
     file.close()
@@ -101,13 +101,13 @@ def parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio
 
 
 def main():
-    parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio-2_meson_umu.txt", flavor=1)
-    parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio-2_meson_utau.txt", flavor=2)
+    parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio-2_meson_umu_v2.txt", flavor=1)
+    parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio-2_meson_utau_v2.txt", flavor=2)
     #parameter_scan(mzp_to_mN_ratio=2.1, out_file="scans/hnl_DUNE_scan_mass-ratio-2_ebrem_ue.txt", flavor=0)
 
     #parameter_scan(mzp_to_mN_ratio=5, out_file="scans/hnl_DUNE_scan_mass-ratio-5_ebrem_ue_highstats.txt", flavor=0)
-    parameter_scan(mzp_to_mN_ratio=5, out_file="scans/hnl_DUNE_scan_mass-ratio-5_meson_umu.txt", flavor=1)
-    parameter_scan(mzp_to_mN_ratio=5, out_file="scans/hnl_DUNE_scan_mass-ratio-5_meson_utau.txt", flavor=2)
+    parameter_scan(mzp_to_mN_ratio=5, out_file="scans/hnl_DUNE_scan_mass-ratio-5_meson_umu_v2.txt", flavor=1)
+    parameter_scan(mzp_to_mN_ratio=5, out_file="scans/hnl_DUNE_scan_mass-ratio-5_meson_utau_v2.txt", flavor=2)
 
 if __name__ == "__main__":
     main()
