@@ -15,6 +15,9 @@ Contact: Adrian Thompson ```a.thompson@northwestern.edu```
 * Zprime branching ratios: ```zprime_decay_widths.py```
 * Flux simulation: ```hnl_flux.py```
 
+Fluxes generated with GEANT4, tabulated as 4-vectors (in GeV)
+* Pi0 meson 4-momenta generated in the DUNE target geometry with GEANT4: ```data/dune_target_pi0_4vectors_1e5POT.txt```
+* Eta0 meson 4-momenta generated in the DUNE target geometry with GEANT4: ```data/dune_target_eta0_4vectors_1e5POT.txt```
 
 ### Constants
 * ```darkquest_constants.py```
