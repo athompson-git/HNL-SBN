@@ -37,6 +37,12 @@ ICARUS_NE = ICARUS_LENGTH * 100 * 1.39 * 6.022e23 / 40
 ICARUS_THRESH = 100.0  # MeV
 # equivalent solid angle: ~ 2.5 mrad
 
+# ICARUS-NuMI [see e.g. 1909.11670]
+ICARUS_NUMI_DIST = 803.0
+ICARUS_NUMI_ANGLE_RAD = 0.097
+ICARUS_NUMI_DUMP_ANGLE_RAD = 0.7455  # calculated approx
+ICARUS_NUMI_DUMP_DIST = 114.64  # calculated approx
+
 
 # fluxes for mesons
 bnb_target_pi0 = np.genfromtxt("../M3DM/data/mb_target_mode/bnb_pi_zero.txt")
