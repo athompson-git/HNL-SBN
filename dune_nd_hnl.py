@@ -13,7 +13,7 @@ pi0_theta = np.arccos(pi0_flux_per_1e5POT[:,2] / np.sqrt(pi0_flux_per_1e5POT[:,0
 eta_theta = np.arccos(eta_flux_per_1e5POT[:,2] / np.sqrt(eta_flux_per_1e5POT[:,0]**2 + eta_flux_per_1e5POT[:,1]**2 + eta_flux_per_1e5POT[:,2]**2))
 
 pi0_flux_per_1e5POT = 1e3*pi0_flux_per_1e5POT[pi0_theta < 2e-2]
-eta_flux_per_1e5POT = 1e3*eta_flux_per_1e5POT[eta_theta < 2e-2]
+eta_flux_per_1e5POT = 1e3*eta_flux_per_1e5POT[eta_theta < 2e-2]  # converting from GeV to MeV units
 
 # add the mass energy back in
 pi0_p2 = pi0_flux_per_1e5POT[:,0]**2 + pi0_flux_per_1e5POT[:,1]**2 + pi0_flux_per_1e5POT[:,2]**2
