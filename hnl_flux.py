@@ -329,7 +329,8 @@ class FluxHNLFromProtonBrem(AxionFlux):
     """
     def __init__(self, proton_energy=120000.0, target=Material("C"), det_dist=DUNE_DIST, det_length=DUNE_LENGTH,
                  det_area=DUNE_AREA, zprime_mass=0.1, coupling_BL=1e-3, mixing_angle=1e-3, mixing_flavor=0,
-                 hnl_mass=0.05, n_samples=1000, max_track_length=5.0, flux_interpolation="log"):
+                 hnl_mass=0.05, n_samples=1000, max_track_length=5.0, flux_interpolation="log",
+                 det_off_axis_angle=0.0):
         super().__init__(zprime_mass, target, det_dist, det_length, det_area)
         self.proton_energy = proton_energy
         self.p_proton = sqrt(proton_energy**2 - M_P**2)
@@ -351,6 +352,10 @@ class FluxHNLFromProtonBrem(AxionFlux):
         self.support = np.ones(n_samples)
         self.max_t = max_track_length
         self.flux_interp = flux_interpolation
+        self.det_angle = det_off_axis_angle
+        self.phi_range = 2*pi
+        if det_off_axis_angle > 0.0:
+            self.phi_range = self.det_sa()
     
     def set_new_params(self, zprime_mass=None, coupling_BL=None, mixing_angle=None,
                        mixing_flavor=None, hnl_mass=None):
@@ -425,15 +430,17 @@ class FluxHNLFromProtonBrem(AxionFlux):
             br_zprime = br_zprime_2HNL(self.ma, self.hnl_mass)
 
             # make sure it maps onto detector solid angle
-            if p4_hnl1.theta() < self.det_sa():
+            if (p4_hnl1.theta() < self.det_sa() + self.det_angle) \
+                and (p4_hnl1.theta() > self.det_sa() - self.det_angle):
                 self.hnl_angle.append(p4_hnl1.theta())
                 self.hnl_energy.append(p4_hnl1.energy())
-                self.hnl_flux.append(self.axion_flux[i]*br_zprime)
+                self.hnl_flux.append(self.axion_flux[i]*br_zprime*self.phi_range/(2*pi))
 
-            if p4_hnl2.theta() < self.det_sa():
+            if (p4_hnl2.theta() < self.det_sa() + self.det_angle) \
+                and (p4_hnl2.theta() > self.det_sa() - self.det_angle):
                 self.hnl_angle.append(p4_hnl2.theta())
                 self.hnl_energy.append(p4_hnl2.energy())
-                self.hnl_flux.append(self.axion_flux[i]*br_zprime)
+                self.hnl_flux.append(self.axion_flux[i]*br_zprime*self.phi_range/(2*pi))
     
     def propagate(self, Ualpha, timing_cut=None, is_isotropic=False, verbose=False):
 
@@ -487,7 +494,7 @@ class FluxHNLFromNeutralMeson(AxionFlux):
     def __init__(self, meson_flux=[[0.0, 0.0, 0.0, M_PI0]], flux_weight=1.0, meson_species="Pion", target=Material("C"),
                  det_dist=DUNE_DIST, det_length=DUNE_LENGTH, det_area=DUNE_AREA,
                  zprime_mass=0.1, coupling_BL=1e-3, mixing_angle=1e-3, mixing_flavor=0,
-                 hnl_mass=0.05, n_samples=1000, off_axis_angle=0.0, apply_angle_cut=True):
+                 hnl_mass=0.05, n_samples=1000, det_off_axis_angle=0.0, apply_angle_cut=True):
         super().__init__(zprime_mass, target, det_dist, det_length, det_area)
         self.meson_flux = meson_flux
         self.flux_weight = flux_weight  # normalization
@@ -516,9 +523,9 @@ class FluxHNLFromNeutralMeson(AxionFlux):
         self.support = np.ones(n_samples)
 
         # Get detector solid angle
-        self.off_axis_angle = off_axis_angle
+        self.det_angle = det_off_axis_angle
         self.phi_range = 2*pi
-        if off_axis_angle > 0.0:
+        if det_off_axis_angle > 0.0:
             self.phi_range = self.det_sa()
         
         self.apply_angle_cut = apply_angle_cut
@@ -614,12 +621,14 @@ class FluxHNLFromNeutralMeson(AxionFlux):
 
             # make sure it maps onto detector solid angle
             if self.apply_angle_cut:
-                if p4_hnl1.theta() < self.det_sa():
+                if (p4_hnl1.theta() < self.off_axis_angle + self.det_sa()) \
+                        and (p4_hnl1.theta() > self.off_axis_angle - self.det_sa()):
                     self.hnl_angle.append(p4_hnl1.theta())
                     self.hnl_energy.append(p4_hnl1.energy())
                     self.hnl_flux.append(self.axion_flux[i]*zprime_br)
 
-                if p4_hnl2.theta() < self.det_sa():
+                if (p4_hnl2.theta() < self.off_axis_angle + self.det_sa()) \
+                        and (p4_hnl2.theta() > self.off_axis_angle - self.det_sa()):
                     self.hnl_angle.append(p4_hnl2.theta())
                     self.hnl_energy.append(p4_hnl2.energy())
                     self.hnl_flux.append(self.axion_flux[i]*zprime_br)
